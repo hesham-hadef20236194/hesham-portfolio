@@ -3,7 +3,7 @@ import { Container, Row, Col } from "react-bootstrap";
 import headerImg from "../assets/header-img.svg";
 import bannerbg from "../assets/banner-bg.png";
 import { ArrowRightCircle } from 'react-bootstrap-icons';
-
+import MyCV from '../assets/My_CV.pdf'
 export const Banner = () => {
   const [loopNum, setLoopNum] = useState(0);
   const [isDeleting, setIsDeleting] = useState(false);
@@ -12,6 +12,17 @@ export const Banner = () => {
   const [index, setIndex] = useState(1);
   const toRotate = [ "Web Developer", "Web Designer", "Football Player" ];
   const period = 2000;
+
+const handleDownload= () =>{
+  const link=document.createElement('a');
+  link.href=MyCV;
+  link.download='my-cv.pdf';
+
+  document.body.appendChild(link);
+  link.click()
+  document.body.removeChild(link);
+};
+
 
   useEffect(() => {
     let ticker = setInterval(() => {
@@ -54,7 +65,7 @@ export const Banner = () => {
             <span className="tagline">Welcome to my Portfolio</span>
             <h1>{`Hi! I'm Hesham`} <span className="txt-rotate" dataPeriod="1000" data-rotate='[ "Web Developer", "Web Designer", "UI/UX Designer" ]'><span className="wrap">{text}</span></span></h1>
             <p>I love web appliction</p>
-            <button onClick={() => console.log('connect')}>Let’s Connect <ArrowRightCircle size={25} /></button>
+            <button onClick={handleDownload}>Download CV<ArrowRightCircle size={25} /></button>
           </Col>
           <Col xs={12} md={6} xl={5}>
             <img src={headerImg} alt="Header Img"/>
